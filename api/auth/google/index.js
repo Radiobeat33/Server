@@ -18,7 +18,7 @@ router.get('/google', passport.authenticate('google', {scope: 'https://www.googl
 
 router.get('/google/callback', passport.authenticate('google'), function (req, res) {
 	var cwd = process.cwd();
-  var testFile = cwd + 'test.html'
+  var testFile = cwd + '/test.html'
   res.sendFile(testFile, function(err){
 	    if(err) {
 	      res.send(err);
