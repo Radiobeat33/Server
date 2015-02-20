@@ -9,26 +9,20 @@ exports.setup = function (User){
       callbackURL: 'http://spectreswag.herokuapp.com/auth/g/google/callback'
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOne({'providers.googleID': profile.id }, function(err, user){
+      User.findOne({'providers.google.id': profile.id }, function(err, user){
         if (err) return done(err);
         if (!user) {
-          var newUser = new User({'providers.googleID': profile.id});
+          var newUser = new User({'providers.google.id': profile.id, 'providers.google.token': accessToken});
           newUser.save(function(err, user){
             if (err) { return done(err); }
-            var newGrantEntry = new Grant({'creator': user._id, 'googleToken': accessToken});
-            newGrantEntry.save(function(err, user){
-              if(err) { return done(err); }
-            });
             done(null, profile); 
           });
         }
-        console.log(user);
         if (user){
-          var newGrantEntry = new Grant({'googleToken': accessToken});
-          newGrantEntry.save(function(err, user){
+          user.save({'providers.google.token': accessToken}, function(err, user){
             if(err) { return done(err); }
+            done(null, profile); 
           });
-          done(null, profile); 
         }
       }); 
     }

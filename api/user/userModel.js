@@ -14,8 +14,14 @@ var UserSchema = new mongoose.Schema({
 
   providers: {
     facebookID: String,
-    googleID: String
+    google: {
+      id: String,
+      token: String
+    }
   }
+
+
+
 });
 
 //bcrypt middleware
