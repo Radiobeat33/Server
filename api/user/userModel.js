@@ -12,8 +12,8 @@ var UserSchema = new mongoose.Schema({
   },
 
   providers: {
-    facebookID: String,
-    googleID: String
+    facebookID: { type: String },
+    googleID: { type: String }
   },
   grants: {
       type: Object, 
