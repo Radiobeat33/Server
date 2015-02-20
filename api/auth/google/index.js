@@ -19,13 +19,17 @@ router.get('/google', passport.authenticate('google', {scope: 'https://www.googl
 router.get('/google/callback', passport.authenticate('google'), function (req, res) {
 	var cwd = process.cwd();
   var testFile = cwd + '/test.html';
-  var token = jwt.sign({foo:'foobar'}, $config.JWT_SECRET, {expiresInMinutes: 60*5});
   res.sendFile(testFile, function(err){
     if(err) {
       res.json({msg: err});
     }
+    res.redirect('/google/complete');
   });
-  res.cookie(token);
 });
+
+router.get('/google/complete' function (req, res){
+  var token = jwt.sign({foo:'foobar'}, $config.JWT_SECRET, {expiresInMinutes: 60*5});
+  res.cookie(token);
+}
 
 module.exports = router; 
