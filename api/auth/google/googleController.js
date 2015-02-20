@@ -23,7 +23,7 @@ exports.setup = function (User){
             if(err) { return done(err); }
             done(null, profile); 
           });
-        }
+        } 
       }); 
     }
   ));
