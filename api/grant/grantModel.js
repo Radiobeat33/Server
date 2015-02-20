@@ -8,28 +8,6 @@ var grantSchema = new mongoose.Schema({
 		required: true
 	},
 
-	username: {
-		type: String,
-		unique: true,
-		required: true
-	},
-
-	twitterToken: {
-		type: String,
-	},
-
-	instagramToken: {
-		type: String,
-	},
-
-	mailchimpToken: {
-		type: String,
-	},
-
-	twitchToken: {
-		type: String,
-	},
-
 	googleToken: {
 		type: String
 	}
