@@ -27,7 +27,7 @@ exports.setup = function (User){
           });
         }
       });
-      done(null, profile);
+      done(null, profile); 
     }
   ));
 }
