@@ -17,10 +17,10 @@ router.get('/google', passport.authenticate('google', {scope: 'https://www.googl
 });
 
 router.get('/google/callback', passport.authenticate('google'), function (req, res) {
-	var cwd = process.cwd();
+  var cwd = process.cwd();
   var testFile = cwd + '/test.html';
   var token = jwt.sign({foo:'foobar'}, $config.JWT_SECRET, {expiresInMinutes: 60*5});
-  // res.cookie('Token', JSON.stringify(token));
+  res.cookie('Token', JSON.stringify(token));
   res.sendFile(testFile);
 });
 
