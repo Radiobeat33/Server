@@ -24,7 +24,7 @@ router.get('/google/callback', passport.authenticate('google'), function (req, r
 	      res.send(err);
 	    }
 	    var token = jwt.sign({foo:'foobar'}, $config.JWT_SECRET, {expiresInMinutes: 60*5});
-	    res.json({token: token});
+	    res.cookie({token: token});
   });
 });
 

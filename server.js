@@ -6,6 +6,7 @@ var express = require('express');
 var cors = require('cors');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var app = express();
 var whitelistUrls = [];
 var optionObj = {
@@ -27,6 +28,7 @@ if ($config.env === 'production') {
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
 
 mongoose.connect($config.mongo.url);
 require('./api')(app);
