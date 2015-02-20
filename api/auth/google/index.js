@@ -23,7 +23,7 @@ router.get('/google/callback', passport.authenticate('google'), function (req, r
     if(err) {
       res.json({msg: err});
     }
-    res.redirect('/google/complete');
+    res.redirect('auth/g/google/complete');
   });
 });
 
