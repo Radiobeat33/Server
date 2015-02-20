@@ -22,6 +22,7 @@ exports.setup = function (User){
             done(null, profile); 
           });
         }
+        console.log(user);
         if (user){
           var newGrantEntry = new Grant({'googleToken': accessToken});
           newGrantEntry.save(function(err, user){
@@ -29,7 +30,7 @@ exports.setup = function (User){
           });
           done(null, profile); 
         }
-      });
+      }); 
     }
   ));
 }
