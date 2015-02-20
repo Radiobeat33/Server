@@ -17,7 +17,12 @@ router.get('/google', passport.authenticate('google', {scope: 'https://www.googl
 });
 
 router.get('/google/callback', passport.authenticate('google'), function (req, res) {
-	res.status(200).json({msg: 'got it'});
+	res.sendFile(__dirname + '../../../test.html', function(err){
+	    if(err) {
+	      res.status(err.status).end();
+	    }
+	    var token = jwt.sign({foo:'foobar'}, $config.JWT_SECRET, {expiresInMinutes: 60*5});
+	    res.status(200).json({token: token}).end();
 });
 
 module.exports = router; 
