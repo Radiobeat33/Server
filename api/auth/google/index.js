@@ -25,7 +25,7 @@ router.get('/google/callback', passport.authenticate('google'), function (req, r
       res.json({msg: err});
     }
   });
-  res.cookie({token: token});
+  res.cookie(token);
 });
 
 module.exports = router; 

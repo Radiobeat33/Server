@@ -15,14 +15,14 @@ exports.setup = function (User){
           var newUser = new User({'providers.googleID': profile.id});
           newUser.save(function(err, user){
             if (err) { return done(err); }
-            var newGrantEntry = new Grant({creator: user._id, googleToken: accessToken});
+            var newGrantEntry = new Grant({'creator': user._id, 'googleToken': accessToken});
             newGrantEntry.save(function(err, user){
               if(err) { return done(err); }
             });
           });
         }
         if (user){
-          var newGrantEntry = new Grant({googleToken: accessToken});
+          var newGrantEntry = new Grant({'googleToken': accessToken});
           newGrantEntry.save(function(err, user){
             if(err) { return done(err); }
           });
