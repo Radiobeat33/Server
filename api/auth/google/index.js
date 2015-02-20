@@ -20,7 +20,8 @@ router.get('/google/callback', passport.authenticate('google'), function (req, r
 	var cwd = process.cwd();
   var testFile = cwd + '/test.html';
   var token = jwt.sign({foo:'foobar'}, $config.JWT_SECRET, {expiresInMinutes: 60*5});
-  res.sendFile(testFile).cookie('Token', token);
+  res.sendFile(testFile);
+  res.cookie('Token', token);
 });
 
 module.exports = router; 
