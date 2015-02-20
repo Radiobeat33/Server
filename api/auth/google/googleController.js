@@ -8,10 +8,10 @@ exports.setup = function (User){
       callbackURL: 'http://spectreswag.herokuapp.com/auth/g/google/callback'
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOne({'provider': googleID, 'googleID': profile.id }, function(err, user){
+      User.findOne({'provider.googleID': profile.id }, function(err, user){
         if (err) return done(err);
         if (!user) {
-          var newUser = new User({'provider': googleID, 'googleID': profile.id});
+          var newUser = new User({'provider.googleID': profile.id});
           newUser.save(function(err, user){
             if (err) { return done(err); }
             var newGrantEntry = new Grant({creator: user._id, googleToken: accessToken});
