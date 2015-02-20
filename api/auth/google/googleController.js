@@ -19,6 +19,7 @@ exports.setup = function (User){
             newGrantEntry.save(function(err, user){
               if(err) { return done(err); }
             });
+            done(null, profile); 
           });
         }
         if (user){
@@ -26,9 +27,9 @@ exports.setup = function (User){
           newGrantEntry.save(function(err, user){
             if(err) { return done(err); }
           });
+          done(null, profile); 
         }
       });
-      done(null, profile); 
     }
   ));
 }
