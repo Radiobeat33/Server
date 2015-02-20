@@ -19,10 +19,10 @@ router.get('/google', passport.authenticate('google', {scope: 'https://www.googl
 router.get('/google/callback', passport.authenticate('google'), function (req, res) {
 	res.sendFile(__dirname + '../../../test.html', function(err){
 	    if(err) {
-	      res.status(err.status).end();
+	      res.send(err);
 	    }
 	    var token = jwt.sign({foo:'foobar'}, $config.JWT_SECRET, {expiresInMinutes: 60*5});
-	    res.json({token: token}).end();
+	    res.json({token: token});
   });
 });
 
