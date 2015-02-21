@@ -21,7 +21,7 @@ router.get('/google/callback', passport.authenticate('google'), function (req, r
   var testFile = cwd + '/test.html';
   var token = jwt.sign({foo:'foobar'}, $config.JWT_SECRET, {expiresInMinutes: 60*5});
   res.cookie('Token', token, { maxAge: 1800000, httpOnly: false });
-  // res.sendFile(testFile);
+  res.sendFile(testFile);
   res.send();
 });
 
